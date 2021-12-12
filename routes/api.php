@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SendMoneyController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/list_of_send_money',[SendMoneyController::class,'index']);
+Route::post('/send_money',[SendMoneyController::class,'store']);
+// Route::get('/user_send_money_list/{user_id}',[SendMoneyController::class,'show']);
