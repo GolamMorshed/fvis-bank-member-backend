@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\ExChangeMoneyController;
+use App\Http\Controllers\WireTransferController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,6 @@ Route::post('/send_money',[SendMoneyController::class,'store']);
 
 Route::get('/list_of_exchange_money',[ExChangeMoneyController::class,'index']);
 Route::post('/exchange_money',[ExChangeMoneyController::class,'store']);
+
+Route::get('/list_of_wire_transfer',[WireTransferController::class,'index']);
+Route::post('/wire_transfer',[WireTransferController::class,'store']);
