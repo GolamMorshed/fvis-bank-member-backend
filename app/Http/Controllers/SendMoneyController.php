@@ -15,7 +15,7 @@ class SendMoneyController extends Controller
      */
     public function index()
     {
-        $send_money_list = SendMoney::paginate(10);
+        $send_money_list = SendMoney::paginate(10)->where('type','send_money');
         return SendMoneyResource::collection($send_money_list);
     }
 
