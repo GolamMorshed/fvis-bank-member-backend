@@ -6,6 +6,7 @@ use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\ExChangeMoneyController;
 use App\Http\Controllers\WireTransferController;
 use App\Http\Controllers\PaymentRequestController;
+use App\Http\Controllers\LoanController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +34,6 @@ Route::post('/wire_transfer',[WireTransferController::class,'store']);
 
 Route::get('/list_of_payment_request',[PaymentRequestController::class,'index']);
 Route::post('/payment_request',[PaymentRequestController::class,'store']);
+
+Route::get('/list_of_loan_request',[LoanController::class,'index']);
+Route::post('/loan_request',[LoanController::class,'store']);
