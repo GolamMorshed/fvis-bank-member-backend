@@ -43,7 +43,7 @@ class SendMoneyController extends Controller
         $send_money->amount = $request->amount;
         $send_money->fee = $request->fee;
         $send_money->dr_cr = $request->dr_cr;
-        $send_money->type = $request->type;
+        $send_money->type = 'send_money';
         $send_money->method = $request->method;
         $send_money->status = $request->status;
         $send_money->note = $request->note;
@@ -73,7 +73,7 @@ class SendMoneyController extends Controller
     public function show($id)
     {
         //console_log($id);
-        
+
     }
 
     /**
