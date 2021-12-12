@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\SendMoneyResource;
+use App\Http\Resources\ExChangeMoneyResource;
 use App\Models\SendMoney;
 
-class SendMoneyController extends Controller
+class ExChangeMoneyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class SendMoneyController extends Controller
      */
     public function index()
     {
-        $send_money_list = SendMoney::paginate(10)->where('type','send_money');
-        return SendMoneyResource::collection($send_money_list);
+        $exchange_money_list = SendMoney::paginate(10)->where('type','exchange_money');
+        return ExChangeMoneyResource::collection($exchange_money_list);
     }
 
     /**
@@ -37,31 +37,30 @@ class SendMoneyController extends Controller
      */
     public function store(Request $request)
     {
-        $send_money = new SendMoney();
-        $send_money->user_id = $request->user_id;
-        $send_money->currency_id = $request->currency_id;
-        $send_money->amount = $request->amount;
-        $send_money->fee = $request->fee;
-        $send_money->dr_cr = $request->dr_cr;
-        $send_money->type = 'send_money';
-        $send_money->method = $request->method;
-        $send_money->status = $request->status;
-        $send_money->note = $request->note;
-        $send_money->loan_id = $request->loan_id;
-        $send_money->ref_id = $request->ref_id;
-        $send_money->parent_id = $request->parent_id;
-        $send_money->other_bank_id = $request->other_bank_id;
-        $send_money->gateway_id = $request->gateway_id;
-        $send_money->created_user_id = $request->created_user_id;
-        $send_money->updated_user_id = $request->updated_user_id;
-        $send_money->branch_id = $request->branch_id;
-        $send_money->transaction_details = $request->transaction_details;
+        $exchange_money = new SendMoney();
+        $exchange_money->user_id = $request->user_id;
+        $exchange_money->currency_id = $request->currency_id;
+        $exchange_money->amount = $request->amount;
+        $exchange_money->fee = $request->fee;
+        $exchange_money->dr_cr = $request->dr_cr;
+        $exchange_money->type = 'exchange_money';
+        $exchange_money->method = $request->method;
+        $exchange_money->status = $request->status;
+        $exchange_money->note = $request->note;
+        $exchange_money->loan_id = $request->loan_id;
+        $exchange_money->ref_id = $request->ref_id;
+        $exchange_money->parent_id = $request->parent_id;
+        $exchange_money->other_bank_id = $request->other_bank_id;
+        $exchange_money->gateway_id = $request->gateway_id;
+        $exchange_money->created_user_id = $request->created_user_id;
+        $exchange_money->updated_user_id = $request->updated_user_id;
+        $exchange_money->branch_id = $request->branch_id;
+        $exchange_money->transaction_details = $request->transaction_details;
 
-        if($send_money->save())
+        if($exchange_money->save())
         {
-            return new SendMoneyResource($send_money);
+            return new ExChangeMoneyResource($exchange_money);
         }
-
     }
 
     /**
@@ -72,8 +71,7 @@ class SendMoneyController extends Controller
      */
     public function show($id)
     {
-        //console_log($id);
-
+        //
     }
 
     /**
