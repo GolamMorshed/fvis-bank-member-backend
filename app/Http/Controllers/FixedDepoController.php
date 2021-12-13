@@ -53,7 +53,7 @@ class FixedDepoController extends Controller
         $fixed_depo_request->created_user_Id = $request->created_user_Id;
         $fixed_depo_request->updated_user_Id = $request->updated_user_Id;
         $fixed_depo_request->branch_Id = $request->branch_Id;
-        
+
         if($fixed_depo_request->save())
         {
             return new FixedDepositResource($fixed_depo_request);
@@ -69,7 +69,9 @@ class FixedDepoController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_fixed_deposit_list = FixedDeposit::paginate(10)->where("user_id",$id);
+        return FixedDepositResource::collection($user_fixed_deposit_list);
+
     }
 
     /**
