@@ -71,7 +71,6 @@ class FixedDepoController extends Controller
     {
         $user_fixed_deposit_list = FixedDeposit::paginate(10)->where("user_id",$id);
         return FixedDepositResource::collection($user_fixed_deposit_list);
-
     }
 
     /**
