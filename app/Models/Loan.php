@@ -27,6 +27,7 @@ class Loan extends Model
         'approved_date',
         'approved_user_Id',
         'created_user_Id',
-        'branch_Id'
+        'branch_Id',
+        
     ];
 }

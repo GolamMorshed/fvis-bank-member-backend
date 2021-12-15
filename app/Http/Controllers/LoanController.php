@@ -71,18 +71,21 @@ class LoanController extends Controller
      */
     public function show($id)
     {
-        $user_loan_request_list = Loan::join('loan_products','loan_products.id','=','loans.loan_product_id')
-        ->join('users','users.id','=','loans.borrower_id')
-        ->join('currency','currency.id','=','loans.currency_id')
+
+        $user_loan_request_list = Loan::join('users','users.id','=',
+        'loans.borrower_id')
+        ->join('loan_products','loan_products.id','=','loan_product_id')
+        ->join('currency','currency.id','=','currency_id')
         ->get([
+            'loans.loan_id',
             'loans.borrower_id',
-            'loan_products.loan_name',
-            'users.name',
+            'loan_products.name',
             'loans.first_payment_date',
             'loans.release_date',
             'currency.name',
             'loans.applied_amount',
             'loans.total_payable',
+            'loans.total_paid',
             'loans.late_payment_penalties',
             'loans.attachment',
             'loans.description',
@@ -93,10 +96,38 @@ class LoanController extends Controller
             'loans.created_user_id',
             'loans.branch_id',
             'loans.created_at',
-            'loans.updated_at'
-        ])->where('borrower_id',$id);
+            'loans.updated_at',
+        ])
+        ->where("borrower_id",$id);
 
         return new LoanResource($user_loan_request_list);
+
+        // $user_loan_request_list = Loan::join('loan_products','loan_products.id','=','loans.loan_product_id')
+        // ->join('users','users.id','=','loans.borrower_id')
+        // ->join('currency','currency.id','=','loans.currency_id')
+        // ->get([
+        //     'loans.borrower_id',
+        //     'loan_products.loan_name',
+        //     'users.name',
+        //     'loans.first_payment_date',
+        //     'loans.release_date',
+        //     'currency.name',
+        //     'loans.applied_amount',
+        //     'loans.total_payable',
+        //     'loans.late_payment_penalties',
+        //     'loans.attachment',
+        //     'loans.description',
+        //     'loans.remarks',
+        //     'loans.status',
+        //     'loans.approved_date',
+        //     'loans.approved_user_id',
+        //     'loans.created_user_id',
+        //     'loans.branch_id',
+        //     'loans.created_at',
+        //     'loans.updated_at'
+        // ])->where('borrower_id',$id);
+        //
+        // return new LoanResource($user_loan_request_list);
     }
 
     /**
