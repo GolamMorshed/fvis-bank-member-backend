@@ -8,6 +8,7 @@ use App\Http\Controllers\WireTransferController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FixedDepoController;
+use App\Http\Controllers\CurrencyController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,3 +43,6 @@ Route::post('/loan_request',[LoanController::class,'store']);
 Route::get('/list_of_fixed_deposit',[FixedDepoController::class,'index']);
 Route::post('/fixed_deposit',[FixedDepoController::class,'store']);
 Route::get('/user_list_of_fixed_deposit/{id}',[FixedDepoController::class,'show']);
+
+
+Route::get('/list_of_currency',[CurrencyController::class,'index']);
