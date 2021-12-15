@@ -41,6 +41,7 @@ Route::post('/payment_request',[PaymentRequestController::class,'store']);
 
 Route::get('/list_of_loan_request',[LoanController::class,'index']);
 Route::post('/loan_request',[LoanController::class,'store']);
+Route::get('/user_loan_request_list/{id}',[LoanController::class,'show']);
 
 Route::get('/list_of_fixed_deposit',[FixedDepoController::class,'index']);
 Route::post('/fixed_deposit',[FixedDepoController::class,'store']);
