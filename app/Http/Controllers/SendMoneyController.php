@@ -85,7 +85,9 @@ class SendMoneyController extends Controller
             'transactions.method',
             'transactions.status',
             'transactions.note',
-        ])->where("user_id",$id);
+        ])
+        ->where("user_id",$id)
+        ->where("type","=","send_money");
 
         return new SendMoneyResource($user_send_money);
 
