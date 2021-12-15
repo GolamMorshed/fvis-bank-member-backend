@@ -61,7 +61,23 @@ class PaymentRequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_payment_request_list = PaymentRequest::join('currency','currency.id','=','payment_requests.currency_id')
+        ->join('users','users.id','=','payment_requests.sender_id')
+        ->get([
+            'currency.name',
+            'payment_requests.amount',
+            'payment_requests.status',
+            'payment_requests.description',
+            'payment_requests.sender_id',
+            'payment_requests.receiver_id',
+            'payment_requests.transaction_id',
+            'payment_requests.branch_id',
+            'payment_requests.created_at',
+            'payment_requests.updated_at',
+        ])
+        ->where("sender_id",$id);
+
+        return new PaymentRequestResource($user_payment_request_list);
     }
 
     /**

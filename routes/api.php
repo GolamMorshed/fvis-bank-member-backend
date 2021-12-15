@@ -38,6 +38,7 @@ Route::get('/user_wire_transfer_list/{id}',[WireTransferController::class,'show'
 
 Route::get('/list_of_payment_request',[PaymentRequestController::class,'index']);
 Route::post('/payment_request',[PaymentRequestController::class,'store']);
+Route::get('/user_payment_request_list/{id}',[PaymentRequestController::class,'show']);
 
 Route::get('/list_of_loan_request',[LoanController::class,'index']);
 Route::post('/loan_request',[LoanController::class,'store']);
