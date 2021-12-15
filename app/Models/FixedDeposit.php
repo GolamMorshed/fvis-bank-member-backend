@@ -10,9 +10,9 @@ class FixedDeposit extends Model
     use HasFactory;
     protected $table = 'fdrs';
     protected $fillable = [
-        'fdr_plan_Id',
-        'user_Id',
-        'currency_Id',
+        'fdr_plan_id',
+        'user_id',
+        'currency_id',
         'deposit_amount',
         'return_amount',
         'attachment',
@@ -20,10 +20,10 @@ class FixedDeposit extends Model
         'status',
         'approved_date',
         'mature_date',
-        'transaction_Id',
-        'approved_user_Id',
-        'created_user_Id',
-        'updated_user_Id',
-        'branch_Id'
+        'transaction_id',
+        'approved_user_id',
+        'created_user_id',
+        'updated_user_id',
+        'branch_id'
     ];
 }
