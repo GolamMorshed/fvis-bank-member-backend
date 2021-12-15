@@ -70,16 +70,13 @@ class FixedDepoController extends Controller
     public function show($id)
     {
 
-        // $user_fixed_deposit_list = FixedDeposit::paginate(10)->where("user_id",$id);
-        // return FixedDepositResource::collection($user_fixed_deposit_list);
-
-        $user_fixed_deposit_list = FixedDeposit::join('fdr_plans','fdr_plans.id','=','fdrs.fdr_plan_id')
+        $user_fixed_deposit_list = FixedDeposit::join('fdr_plans','fdr_plans.id','=',
+        'fdrs.fdr_plan_id')
         ->join('users','users.id','=','fdrs.user_id')
         ->join('currency','currency.id','=','fdrs.currency_id')
         ->get([
-            'fdrs.attachment',
-            'fdr_plans.name',
-            'users.name',
+            'fdrs.fdr_plan_id',
+            'fdrs.user_id',
             'currency.name',
             'fdrs.deposit_amount',
             'fdrs.return_amount',
@@ -95,10 +92,44 @@ class FixedDepoController extends Controller
             'fdrs.branch_id',
             'fdrs.created_at',
             'fdrs.updated_at',
-
-        ])->where('user_id',$id);
+        ])
+        ->where("user_id",$id);
 
         return new FixedDepositResource($user_fixed_deposit_list);
+
+
+
+
+
+        // $user_fixed_deposit_list = FixedDeposit::paginate(10)->where("user_id",$id);
+        // return FixedDepositResource::collection($user_fixed_deposit_list);
+
+        // $user_fixed_deposit_list = FixedDeposit::join('fdr_plans','fdr_plans.id','=','fdrs.fdr_plan_id')
+        // ->join('users','users.id','=','fdrs.user_id')
+        // ->join('currency','currency.id','=','fdrs.currency_id')
+        // ->get([
+        //     'fdrs.attachment',
+        //     'fdr_plans.name',
+        //     'users.name',
+        //     'currency.name',
+        //     'fdrs.deposit_amount',
+        //     'fdrs.return_amount',
+        //     'fdrs.attachment',
+        //     'fdrs.remarks',
+        //     'fdrs.status',
+        //     'fdrs.approved_date',
+        //     'fdrs.mature_date',
+        //     'fdrs.transaction_id',
+        //     'fdrs.approved_user_id',
+        //     'fdrs.created_user_id',
+        //     'fdrs.updated_user_id',
+        //     'fdrs.branch_id',
+        //     'fdrs.created_at',
+        //     'fdrs.updated_at',
+        //
+        // ])->where('user_id',$id);
+        //
+        // return new FixedDepositResource($user_fixed_deposit_list);
 
     }
 
