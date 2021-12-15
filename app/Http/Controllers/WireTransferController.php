@@ -71,7 +71,24 @@ class WireTransferController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_wire_transfer = SendMoney::join('users','users.id','=',
+        'transactions.user_id')
+        ->join('currency','currency.id','=','currency_id')
+        ->get([
+            'transactions.user_id',
+            'currency.name',
+            'transactions.amount',
+            'transactions.fee',
+            'transactions.dr_cr',
+            'transactions.type',
+            'transactions.method',
+            'transactions.status',
+            'transactions.note',
+        ])
+        ->where("user_id",$id)
+        ->where("type","=","wire_transfer");
+
+        return new WireTransferResource($user_wire_transfer);
     }
 
     /**
