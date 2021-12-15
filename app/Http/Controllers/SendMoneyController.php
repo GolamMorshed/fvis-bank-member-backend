@@ -73,7 +73,7 @@ class SendMoneyController extends Controller
     public function show($id)
     {
         $user_send_money = SendMoney::join('users','users.id','=',
-        'user_id')
+        'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
             'transactions.user_id',
