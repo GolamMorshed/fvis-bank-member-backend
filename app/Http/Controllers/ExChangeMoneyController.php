@@ -71,7 +71,24 @@ class ExChangeMoneyController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_exchange_money = SendMoney::join('users','users.id','=',
+        'transactions.user_id')
+        ->join('currency','currency.id','=','currency_id')
+        ->get([
+            'transactions.user_id',
+            'currency.name',
+            'transactions.amount',
+            'transactions.fee',
+            'transactions.dr_cr',
+            'transactions.type',
+            'transactions.method',
+            'transactions.status',
+            'transactions.note',
+        ])
+        ->where("user_id",$id)
+        ->where("type","=","exchange_money");
+
+        return new ExChangeMoneyResource($user_exchange_money);
     }
 
     /**

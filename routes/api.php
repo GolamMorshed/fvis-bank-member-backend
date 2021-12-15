@@ -30,6 +30,7 @@ Route::get('/user_send_money_list/{id}',[SendMoneyController::class,'show']);
 
 Route::get('/list_of_exchange_money',[ExChangeMoneyController::class,'index']);
 Route::post('/exchange_money',[ExChangeMoneyController::class,'store']);
+Route::get('/user_exchange_money_list/{id}',[ExChangeMoneyController::class,'show']);
 
 Route::get('/list_of_wire_transfer',[WireTransferController::class,'index']);
 Route::post('/wire_transfer',[WireTransferController::class,'store']);
