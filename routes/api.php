@@ -10,6 +10,8 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FixedDepoController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\FDRPlanController;
+use App\Http\Controllers\UserListController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,3 +54,4 @@ Route::get('/user_fixed_deposit_list/{id}',[FixedDepoController::class,'show']);
 
 Route::get('/list_of_currency',[CurrencyController::class,'index']);
 Route::get('/list_of_fdr_plans',[FDRPlanController::class,'index']);
+Route::get('/users',[UserListController::class,'index']);
