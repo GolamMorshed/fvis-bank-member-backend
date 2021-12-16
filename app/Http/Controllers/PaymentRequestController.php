@@ -64,12 +64,12 @@ class PaymentRequestController extends Controller
         $user_payment_request_list = PaymentRequest::join('currency','currency.id','=','payment_requests.currency_id')
         ->join('users','users.id','=','payment_requests.sender_id')
         ->get([
-            'currency.name',
+            'currency.name as currency_name',
             'payment_requests.amount',
             'payment_requests.status',
             'payment_requests.description',
             'payment_requests.sender_id',
-            'payment_requests.receiver_id',
+            'users.name as receiver_name',
             'payment_requests.transaction_id',
             'payment_requests.branch_id',
             'payment_requests.created_at',
