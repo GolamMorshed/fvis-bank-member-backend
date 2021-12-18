@@ -12,6 +12,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\FDRPlanController;
 use App\Http\Controllers\UserListController;
 use App\Http\Controllers\DepositController;
+use App\Http\Controllers\LoanProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,7 @@ Route::post('/create_user',[UserListController::class,'store']);
 
 Route::get('/list_of_deposit',[DepositController::class,'index']);
 Route::post('/create_deposit',[DepositController::class,'store']);
+
+Route::get('/list_of_loan_product',[LoanProductController::class,'index']);
+Route::post('/loan_product',[LoanProductController::class,'store']);
+Route::put('/update_status/{id}',[LoanProductController::class,'update']);

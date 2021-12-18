@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\LoanProductResource;
+use App\Models\LoanProduct;
 
 class LoanProductController extends Controller
 {
@@ -13,7 +15,8 @@ class LoanProductController extends Controller
      */
     public function index()
     {
-        //
+        $loan_product = LoanProduct::paginate(10);
+        return LoanProductResource::collection($loan_product);
     }
 
     /**
@@ -34,7 +37,21 @@ class LoanProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $loan_product = new LoanProduct();
+        $loan_product->name = $request->name;
+        $loan_product->minimum_amount = $request->minimum_amount;
+        $loan_product->maximum_amount = $request->maximum_amount;
+        $loan_product->description = $request->description;
+        $loan_product->interest_rate = $request->interest_rate;
+        $loan_product->interest_type = $request->interest_type;
+        $loan_product->term = $request->term;
+        $loan_product->term_period = $request->term_period;
+        $loan_product->status = $request->status;
+
+        if($loan_product->save())
+        {
+            return new LoanProductResource($loan_product);
+        }
     }
 
     /**
@@ -68,7 +85,12 @@ class LoanProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $loan_product_id = LoanProduct::findOrFail($id);
+        $loan_product_id->status = $request->status;
+        if($loan_product_id->save())
+        {
+            echo "Sucessfully Updated Status";
+        }
     }
 
     /**
