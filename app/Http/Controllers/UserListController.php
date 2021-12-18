@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserListResource;
 use App\Models\UserList;
+use Auth;
 
 class UserListController extends Controller
 {
@@ -26,7 +27,7 @@ class UserListController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,25 @@ class UserListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new UserList();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->user_type = $request->user_type;
+        $user->role_id = $request->role_id;
+        $user->branch_id = $request->branch_id;
+        $user->status = $request->status;
+        $user->profile_picture = $request->file('profile_picture')->store('profile_picture');
+        $user->password = bcrypt($request->password);
+        $user->provider = $request->provider;
+        $user->provider_id = $request->provider_id;
+        $user->country_code = $request->country_code;
+        $user->created_at = now();
+
+        if($user->save())
+        {
+            return new UserListResource($user);
+        }
     }
 
     /**
