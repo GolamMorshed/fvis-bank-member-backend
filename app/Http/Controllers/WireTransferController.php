@@ -15,11 +15,11 @@ class WireTransferController extends Controller
      */
     public function index()
     {
-        $wire_transfer_list = SendMoney::join('users','users.id','=',
+        $wire_transfer_list = SendMoney::join('users as user_name','user_name.id','=',
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
-            'transactions.user_id',
+            'user_name.name as user_name',
             'currency.name',
             'transactions.amount',
             'transactions.fee',
@@ -85,11 +85,11 @@ class WireTransferController extends Controller
      */
     public function show($id)
     {
-        $user_wire_transfer = SendMoney::join('users','users.id','=',
+        $user_wire_transfer = SendMoney::join('users as user_name','user_name.id','=',
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
-            'transactions.user_id',
+            'user_name.name as user_name',
             'currency.name',
             'transactions.amount',
             'transactions.fee',
