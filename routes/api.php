@@ -13,6 +13,7 @@ use App\Http\Controllers\FDRPlanController;
 use App\Http\Controllers\UserListController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\LoanProductController;
+use App\Http\Controllers\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,7 @@ Route::get('/list_of_fdr_plans',[FDRPlanController::class,'index']);
 Route::post('/fdr_plan',[FDRPlanController::class,'store']);
 Route::put('/fdr_update_status/{id}',[FDRPlanController::class,'update']);
 
+
 Route::get('/users',[UserListController::class,'index']);
 Route::post('/create_user',[UserListController::class,'store']);
 
@@ -77,3 +79,6 @@ Route::post('/create_deposit',[DepositController::class,'store']);
 Route::get('/list_of_loan_product',[LoanProductController::class,'index']);
 Route::post('/loan_product',[LoanProductController::class,'store']);
 Route::put('/update_status/{id}',[LoanProductController::class,'update']);
+
+Route::get('/list_of_branches',[BranchController::class,'index']);
+Route::post('/branch',[BranchController::class,'store']);
