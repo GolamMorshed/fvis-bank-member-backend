@@ -14,6 +14,8 @@ use App\Http\Controllers\UserListController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\LoanProductController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\OtherBankController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -80,5 +82,10 @@ Route::get('/list_of_loan_product',[LoanProductController::class,'index']);
 Route::post('/loan_product',[LoanProductController::class,'store']);
 Route::put('/update_status/{id}',[LoanProductController::class,'update']);
 
+
 Route::get('/list_of_branches',[BranchController::class,'index']);
 Route::post('/branch',[BranchController::class,'store']);
+
+Route::get('/list_of_other_banks',[OtherBankController::class,'index']);
+Route::post('/other_bank',[OtherBankController::class,'store']);
+Route::put('/update_other_bank/{id}',[OtherBankController::class,'update']);
