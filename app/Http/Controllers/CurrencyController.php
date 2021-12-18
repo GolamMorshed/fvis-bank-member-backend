@@ -15,7 +15,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currency = Currency::all()->where('status',1);
+        $currency = Currency::all();
         return CurrencyResource::collection($currency);
     }
 
@@ -37,7 +37,16 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $currency = new Currency();
+        $currency->name = $request->name;
+        $currency->exchange_rate = $request->exchange_rate;
+        $currency->base_currency = $request->base_currency;
+        $currency->status = $request->status;
+
+        if($currency->save())
+        {
+            return new CurrencyResource($currency);
+        }
     }
 
     /**
@@ -71,7 +80,12 @@ class CurrencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $currency_id = Currency::findOrFail($id);
+        $currency_id->status = $request->status;
+        if($currency_id->save())
+        {
+            echo 'Successfully Updated Status';
+        }
     }
 
     /**
