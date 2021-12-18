@@ -15,7 +15,21 @@ class WireTransferController extends Controller
      */
     public function index()
     {
-        $wire_transfer_list = SendMoney::paginate(10)->where('type','wire_transfer');
+        $wire_transfer_list = SendMoney::join('users','users.id','=',
+        'transactions.user_id')
+        ->join('currency','currency.id','=','currency_id')
+        ->get([
+            'transactions.user_id',
+            'currency.name',
+            'transactions.amount',
+            'transactions.fee',
+            'transactions.dr_cr',
+            'transactions.type',
+            'transactions.method',
+            'transactions.status',
+            'transactions.note',
+        ])->where("type","=","wire_transfer");
+
         return WireTransferResource::collection($wire_transfer_list);
     }
 
