@@ -37,7 +37,20 @@ class FDRPlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fdr_package = new FDR();
+        $fdr_package->name = $request->name;
+        $fdr_package->minimum_amount = $request->minimum_amount;
+        $fdr_package->maximum_amount = $request->maximum_amount;
+        $fdr_package->interest_rate = $request->interest_rate;
+        $fdr_package->duration = $request->duration;
+        $fdr_package->duration_type = $request->duration_type;
+        $fdr_package->status = $request->status;
+        $fdr_package->description = $request->description;
+
+        if($fdr_package->save())
+        {
+            return new FDRResource($fdr_package);
+        }
     }
 
     /**
@@ -71,7 +84,12 @@ class FDRPlanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fdr_package_id = FDR::findOrFail($id);
+        $fdr_package_id->status = $request->status;
+        if($fdr_package_id->save())
+        {
+            echo "Sucessfully Updated Status";
+        }
     }
 
     /**

@@ -61,8 +61,11 @@ Route::get('/user_fixed_deposit_list/{id}',[FixedDepoController::class,'show']);
 
 
 Route::get('/list_of_currency',[CurrencyController::class,'index']);
-Route::get('/list_of_fdr_plans',[FDRPlanController::class,'index']);
 
+
+Route::get('/list_of_fdr_plans',[FDRPlanController::class,'index']);
+Route::post('/fdr_plan',[FDRPlanController::class,'store']);
+Route::put('/fdr_update_status/{id}',[FDRPlanController::class,'update']);
 
 Route::get('/users',[UserListController::class,'index']);
 Route::post('/create_user',[UserListController::class,'store']);
