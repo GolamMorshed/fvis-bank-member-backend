@@ -51,7 +51,7 @@ class UserListController extends Controller
         $user->provider = $request->provider;
         $user->provider_id = $request->provider_id;
         $user->country_code = $request->country_code;
-        $user->created_at = now();
+        
 
         if($user->save())
         {
