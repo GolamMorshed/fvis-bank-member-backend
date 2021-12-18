@@ -125,7 +125,11 @@ class WireTransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $wire_transfer_user = SendMoney::findOrFail($id);
+        $wire_transfer_user->status = $request->status;
+        if($wire_transfer_user->save()){
+            return "Sucessfully Updated";
+        }
     }
 
     /**

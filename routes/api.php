@@ -38,6 +38,7 @@ Route::get('/user_exchange_money_list/{id}',[ExChangeMoneyController::class,'sho
 Route::get('/list_of_wire_transfer',[WireTransferController::class,'index']);
 Route::post('/wire_transfer',[WireTransferController::class,'store']);
 Route::get('/user_wire_transfer_list/{id}',[WireTransferController::class,'show']);
+Route::put('/update_status/{id}',[WireTransferController::class,'update']);
 
 Route::get('/list_of_payment_request',[PaymentRequestController::class,'index']);
 Route::post('/payment_request',[PaymentRequestController::class,'store']);

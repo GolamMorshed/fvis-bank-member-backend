@@ -10,6 +10,7 @@ class SendMoney extends Model
     use HasFactory;
     protected $table = 'transactions';
     protected $fillable = [
+        'id',
         'user_id',
         'currency_id',
         'amount',
