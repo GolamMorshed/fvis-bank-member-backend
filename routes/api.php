@@ -18,6 +18,7 @@ use App\Http\Controllers\OtherBankController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,3 +110,7 @@ Route::put('/update_faq_status/{id}',[FAQController::class,'update']);
 Route::get('/list_of_testimonials',[TestimonialController::class,'index']);
 Route::post('/create_testimonial',[TestimonialController::class,'store']);
 Route::put('/update_testimonial_status/{id}',[TestimonialController::class,'update']);
+
+
+Route::get('/list_of_teams',[TeamController::class,'index']);
+Route::post('/create_team',[TeamController::class,'store']);
