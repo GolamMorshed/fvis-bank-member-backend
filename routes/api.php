@@ -16,6 +16,7 @@ use App\Http\Controllers\LoanProductController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\OtherBankController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\FAQController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,3 +98,8 @@ Route::put('/update_other_bank/{id}',[OtherBankController::class,'update']);
 
 Route::get('/list_of_services',[ServiceController::class,'index']);
 Route::post('/create_service',[ServiceController::class,'store']);
+
+
+Route::get('/list_of_faqs',[FAQController::class,'index']);
+Route::post('/create_faq',[FAQController::class,'store']);
+Route::put('/update_activation/{id}',[FAQController::class,'update']);

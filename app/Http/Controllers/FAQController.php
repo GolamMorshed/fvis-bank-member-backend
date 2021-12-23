@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\FAQResource;
+use App\Models\FAQ;
 
 class FAQController extends Controller
 {
@@ -13,7 +15,8 @@ class FAQController extends Controller
      */
     public function index()
     {
-        //
+        $faq = FAQ::paginate(10);
+        return FAQResource::collection($faq);
     }
 
     /**
@@ -34,7 +37,15 @@ class FAQController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faq = new FAQ();
+        $faq->locale = $request->locale;
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->status = $request->status;
+        if($faq->save())
+        {
+            return new FAQResource($faq);
+        }
     }
 
     /**
@@ -68,7 +79,12 @@ class FAQController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $faq = FAQ::findOrFail($id);
+        $faq->status = $request->status;
+        if($faq->save())
+        {
+            echo 'Sucessfully Updated Activation';
+        }
     }
 
     /**
