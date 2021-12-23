@@ -17,6 +17,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\OtherBankController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,4 +103,9 @@ Route::post('/create_service',[ServiceController::class,'store']);
 
 Route::get('/list_of_faqs',[FAQController::class,'index']);
 Route::post('/create_faq',[FAQController::class,'store']);
-Route::put('/update_activation/{id}',[FAQController::class,'update']);
+Route::put('/update_faq_status/{id}',[FAQController::class,'update']);
+
+
+Route::get('/list_of_testimonials',[TestimonialController::class,'index']);
+Route::post('/create_testimonial',[TestimonialController::class,'store']);
+Route::put('/update_testimonial_status/{id}',[TestimonialController::class,'update']);
