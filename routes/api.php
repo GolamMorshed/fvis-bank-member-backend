@@ -71,6 +71,7 @@ Route::put('/update_status/{id}',[WireTransferController::class,'update']);
 Route::get('/list_of_payment_request',[PaymentRequestController::class,'index']);
 Route::post('/payment_request',[PaymentRequestController::class,'store']);
 Route::get('/user_payment_request_list/{id}',[PaymentRequestController::class,'show']);
+Route::put('/cancel_request/{id}',[PaymentRequestController::class,'update']);
 
 
 Route::get('/list_of_loan_request',[LoanController::class,'index']);

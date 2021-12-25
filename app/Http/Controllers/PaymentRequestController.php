@@ -15,7 +15,23 @@ class PaymentRequestController extends Controller
      */
     public function index()
     {
-        $payment_request_list = PaymentRequest::paginate(10);
+        //$payment_request_list = PaymentRequest::paginate(10);
+        $payment_request_list = PaymentRequest::join('currency','currency.id','=','payment_requests.currency_id')
+        ->join('users as sender_user', 'sender_user.id','=','payment_requests.sender_id')
+        ->join('users as receiver_user', 'receiver_user.id','=','payment_requests.receiver_id')
+        ->get([
+            'currency.name as currency_name',
+            'payment_requests.amount',
+            'payment_requests.status',
+            'payment_requests.description',
+            'payment_requests.sender_id',
+            'sender_user.name as sender_name',
+            'receiver_user.name as receiver_name',
+            'payment_requests.transaction_id',
+            'payment_requests.branch_id',
+            'payment_requests.created_at',
+            'payment_requests.updated_at',
+        ]);
         return PaymentRequestResource::collection($payment_request_list);
     }
 
@@ -61,39 +77,23 @@ class PaymentRequestController extends Controller
      */
     public function show($id)
     {
-        // $user_payment_request_list = PaymentRequest::join('currency','currency.id','=','payment_requests.currency_id')
-        // ->select(['payment_requests.*','currency.name as currency_name','users.name as sender_name', 'users.name as receiver_name'])
-        // ->join('users','users.id','=','payment_requests.sender_id')
-        // ->get([
-        //     'currency_name',
-        //     'payment_requests.amount',
-        //     'payment_requests.status',
-        //     'payment_requests.description',
-        //     // 'payment_requests.sender_id',
-        //     'sender_name',
-        //     'receiver_name',
-        //     'payment_requests.transaction_id',
-        //     'payment_requests.branch_id',
-        //     'payment_requests.created_at',
-        //     'payment_requests.updated_at',
-        // ])
         $user_payment_request_list = PaymentRequest::join('currency','currency.id','=','payment_requests.currency_id')
-            ->join('users as sender_user', 'sender_user.id','=','payment_requests.sender_id')
-            ->join('users as receiver_user', 'receiver_user.id','=','payment_requests.receiver_id')
-            ->get([
-                'currency.name as currency_name',
-                'payment_requests.amount',
-                'payment_requests.status',
-                'payment_requests.description',
-                'payment_requests.sender_id',
-                'sender_user.name as sender_name',
-                'receiver_user.name as receiver_name',
-                'payment_requests.transaction_id',
-                'payment_requests.branch_id',
-                'payment_requests.created_at',
-                'payment_requests.updated_at',
-            ])
-            ->where("sender_id", $id);
+        ->join('users as sender_user', 'sender_user.id','=','payment_requests.sender_id')
+        ->join('users as receiver_user', 'receiver_user.id','=','payment_requests.receiver_id')
+        ->get([
+            'currency.name as currency_name',
+            'payment_requests.amount',
+            'payment_requests.status',
+            'payment_requests.description',
+            'payment_requests.sender_id',
+            'sender_user.name as sender_name',
+            'receiver_user.name as receiver_name',
+            'payment_requests.transaction_id',
+            'payment_requests.branch_id',
+            'payment_requests.created_at',
+            'payment_requests.updated_at',
+        ])
+        ->where("sender_id", $id);
 
         return new PaymentRequestResource($user_payment_request_list);
     }
@@ -118,7 +118,13 @@ class PaymentRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sender_cancellation = PaymentRequest::findOrFail($id);
+        $sender_cancellation->status = $request->status;
+
+        if($sender_cancellation->save())
+        {
+            echo "Sucessfully cancel requuest";
+        }
     }
 
     /**
