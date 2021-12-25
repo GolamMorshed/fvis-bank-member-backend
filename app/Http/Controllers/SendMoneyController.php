@@ -93,6 +93,27 @@ class SendMoneyController extends Controller
 
     }
 
+    public function viewAllPaymentHistory($id)
+    {
+        $user_payment_history= SendMoney::join('users','users.id','=',
+        'transactions.user_id')
+        ->join('currency','currency.id','=','currency_id')
+        ->get([
+            'transactions.user_id',
+            'currency.name',
+            'transactions.amount',
+            'transactions.fee',
+            'transactions.dr_cr',
+            'transactions.type',
+            'transactions.method',
+            'transactions.status',
+            'transactions.note',
+        ])
+        ->where("user_id",$id);
+
+        return new SendMoneyResource($user_payment_history);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -55,7 +55,7 @@ Route::group([
 Route::get('/list_of_send_money',[SendMoneyController::class,'index']);
 Route::post('/send_money',[SendMoneyController::class,'store']);
 Route::get('/user_send_money_list/{id}',[SendMoneyController::class,'show']);
-
+Route::get('/user_payment_history/{id}',[SendMoneyController::class,'viewAllPaymentHistory']);
 
 Route::get('/list_of_exchange_money',[ExChangeMoneyController::class,'index']);
 Route::post('/exchange_money',[ExChangeMoneyController::class,'store']);
