@@ -2,13 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\ExChangeMoneyController;
 use App\Http\Controllers\WireTransferController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FixedDepoController;
-use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\FDRPlanController;
 use App\Http\Controllers\UserListController;
@@ -20,6 +20,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\SupportTicketController;
 
 
 /*
@@ -56,7 +57,7 @@ Route::group([
 Route::get('/list_of_send_money',[SendMoneyController::class,'index']);
 Route::post('/send_money',[SendMoneyController::class,'store']);
 Route::get('/user_send_money_list/{id}',[SendMoneyController::class,'show']);
-
+Route::get('/user_payment_history/{id}',[SendMoneyController::class,'viewAllPaymentHistory']);
 
 Route::get('/list_of_exchange_money',[ExChangeMoneyController::class,'index']);
 Route::post('/exchange_money',[ExChangeMoneyController::class,'store']);
@@ -72,21 +73,16 @@ Route::put('/update_status/{id}',[WireTransferController::class,'update']);
 Route::get('/list_of_payment_request',[PaymentRequestController::class,'index']);
 Route::post('/payment_request',[PaymentRequestController::class,'store']);
 Route::get('/user_payment_request_list/{id}',[PaymentRequestController::class,'show']);
+Route::put('/cancel_request/{id}',[PaymentRequestController::class,'update']);
 
 
 Route::get('/list_of_loan_request',[LoanController::class,'index']);
 Route::post('/loan_request',[LoanController::class,'store']);
 Route::get('/user_loan_request_list/{id}',[LoanController::class,'show']);
 
-
 Route::get('/list_of_fixed_deposit',[FixedDepoController::class,'index']);
 Route::post('/fixed_deposit',[FixedDepoController::class,'store']);
 Route::get('/user_fixed_deposit_list/{id}',[FixedDepoController::class,'show']);
-
-
-Route::get('/list_of_support_tickets',[SupportTicketController::class,'index']);
-// Route::post('/support_ticket',[SupportTicketResource::class,'store']);
-// Route::get('/user_support_ticket_list/{id}',[SupportTicketResource::class,'show']);
 
 
 Route::get('/list_of_currency',[CurrencyController::class,'index']);
@@ -137,3 +133,10 @@ Route::put('/update_testimonial_status/{id}',[TestimonialController::class,'upda
 
 Route::get('/list_of_teams',[TeamController::class,'index']);
 Route::post('/create_team',[TeamController::class,'store']);
+
+
+Route::post('/support_ticket',[SupportTicketController::class,'store']);
+Route::put('/update_support_ticket_status/{id}',[SupportTicketController::class,'update']);
+Route::put('/assign_priority/{id}',[SupportTicketController::class,'priority']);
+Route::put('/assign_operator_id/{id}',[SupportTicketController::class,'assignOperatorID']);
+Route::put('/assign_closed_user_id/{id}',[SupportTicketController::class,'assignClosedUserID']);
