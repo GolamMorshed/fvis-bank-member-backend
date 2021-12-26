@@ -108,7 +108,28 @@ class DepositController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_deposit = SendMoney::findorfail($id);
+        $update_deposit->currency_id = $request->currency_id;
+        $update_deposit->amount = $request->amount;
+        $update_deposit->fee = $request->fee;
+        $update_deposit->dr_cr = $request->dr_cr;
+        $update_deposit->method = $request->method;
+        $update_deposit->status = $request->status;
+        $update_deposit->note = $request->note;
+        $update_deposit->loan_id = $request->loan_id;
+        $update_deposit->ref_id = $request->ref_id;
+        $update_deposit->parent_id = $request->parent_id;
+        $update_deposit->other_bank_id = $request->other_bank_id;
+        $update_deposit->gateway_id = $request->gateway_id;
+        $update_deposit->created_user_id = $request->created_user_id;
+        $update_deposit->updated_user_id = $request->updated_user_id;
+        $update_deposit->branch_id = $request->branch_id;
+        $update_deposit->transaction_details = $request->transaction_details;
+
+        if($update_deposit->save())
+        {
+            echo "Sucessfully Update the deposit";
+        }
     }
 
     /**
@@ -119,6 +140,11 @@ class DepositController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete_deposit = SendMoney::findOrFail($id);
+
+        if($delete_deposit->delete())
+        {
+            echo "Sucessfully delete deposit";
+        }
     }
 }
