@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SendMoneyController;
 use App\Http\Controllers\ExChangeMoneyController;
 use App\Http\Controllers\WireTransferController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\SupportTicketController;
 
 
 /*
@@ -131,3 +133,10 @@ Route::put('/update_testimonial_status/{id}',[TestimonialController::class,'upda
 
 Route::get('/list_of_teams',[TeamController::class,'index']);
 Route::post('/create_team',[TeamController::class,'store']);
+
+
+Route::post('/support_ticket',[SupportTicketController::class,'store']);
+Route::put('/update_support_ticket_status/{id}',[SupportTicketController::class,'update']);
+Route::put('/assign_priority/{id}',[SupportTicketController::class,'priority']);
+Route::put('/assign_operator_id/{id}',[SupportTicketController::class,'assignOperatorID']);
+Route::put('/assign_closed_user_id/{id}',[SupportTicketController::class,'assignClosedUserID']);

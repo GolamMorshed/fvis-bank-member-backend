@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class SupportTicket extends Model
 {
     use HasFactory;
+    protected $table = "support_ticket_messages";
 }
