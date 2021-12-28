@@ -22,7 +22,8 @@ class GiftCardController extends Controller
             'gift_cards.amount',
             'gift_cards.status',
             'gift_cards.user_id',
-            'gift_cards.branch_id'
+            'gift_cards.branch_id',
+            'gift_cards.used_at'
         ]);
         return GiftCardResource::collection($gift_card);
     }
@@ -36,8 +37,25 @@ class GiftCardController extends Controller
             'gift_cards.amount',
             'gift_cards.status',
             'gift_cards.user_id',
-            'gift_cards.branch_id'
+            'gift_cards.branch_id',
+            'gift_cards.used_at'
         ])->where('status','1');
+        return GiftCardResource::collection($gift_card);
+    }
+
+    public function usedGiftCards()
+    {
+        $gift_card = GiftCard::join('currency','currency.id','=','currency_id')
+        ->get([
+            'currency.name',
+            'gift_cards.code',
+            'gift_cards.amount',
+            'gift_cards.status',
+            'gift_cards.user_id',
+            'gift_cards.branch_id',
+            'gift_cards.used_at'
+
+        ])->where('used_at','!=',NULL);
         return GiftCardResource::collection($gift_card);
     }
 
