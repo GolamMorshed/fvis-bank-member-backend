@@ -22,7 +22,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\GiftCardController;
-
+use App\Http\Controllers\UserRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,3 +152,9 @@ Route::post('/gift_card',[GiftCardController::class,'store']);
 Route::put('/update_gift_card/{id}',[GiftCardController::class,'update']);
 Route::put('/update_used_time/{id}',[GiftCardController::class,'updateUsedTime']);
 Route::delete('/delete_gift_card/{id}',[GiftCardController::class,'destroy']);
+
+
+Route::get('/list_of_user_roles',[UserRoleController::class,'index']);
+Route::post('/user_role',[UserRoleController::class,'store']);
+Route::put('/update_user_role/{id}',[UserRoleController::class,'update']);
+Route::delete('/delete_user_role/{id}',[UserRoleController::class,'destroy']);
