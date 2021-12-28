@@ -146,6 +146,7 @@ Route::put('/assign_closed_user_id/{id}',[SupportTicketController::class,'assign
 
 
 Route::get('/list_of_gift_cards',[GiftCardController::class,'index']);
+Route::get('/list_of_active_gift_cards',[GiftCardController::class,'activeGiftCard']);
 Route::post('/gift_card',[GiftCardController::class,'store']);
 Route::put('/update_gift_card/{id}',[GiftCardController::class,'update']);
 Route::delete('/delete_gift_card/{id}',[GiftCardController::class,'destroy']);
