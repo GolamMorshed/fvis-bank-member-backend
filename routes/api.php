@@ -21,6 +21,7 @@ use App\Http\Controllers\FAQController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\GiftCardController;
 
 
 /*
@@ -142,3 +143,9 @@ Route::put('/update_support_ticket_status/{id}',[SupportTicketController::class,
 Route::put('/assign_priority/{id}',[SupportTicketController::class,'priority']);
 Route::put('/assign_operator_id/{id}',[SupportTicketController::class,'assignOperatorID']);
 Route::put('/assign_closed_user_id/{id}',[SupportTicketController::class,'assignClosedUserID']);
+
+
+Route::get('/list_of_gift_cards',[GiftCardController::class,'index']);
+Route::post('/gift_card',[GiftCardController::class,'store']);
+Route::put('/update_gift_card/{id}',[GiftCardController::class,'update']);
+Route::delete('/delete_gift_card/{id}',[GiftCardController::class,'destroy']);
