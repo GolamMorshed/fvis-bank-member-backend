@@ -23,6 +23,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\AccessControlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,3 +159,9 @@ Route::get('/list_of_user_roles',[UserRoleController::class,'index']);
 Route::post('/user_role',[UserRoleController::class,'store']);
 Route::put('/update_user_role/{id}',[UserRoleController::class,'update']);
 Route::delete('/delete_user_role/{id}',[UserRoleController::class,'destroy']);
+
+
+Route::get('/list_of_access_permission',[AccessControlController::class,'index']);
+Route::post('/access_permission',[AccessControlController::class,'store']);
+Route::put('/update_access_permission/{id}',[AccessControlController::class,'update']);
+Route::delete('/delete_access_permission/{id}',[AccessControlController::class,'destroy']);
