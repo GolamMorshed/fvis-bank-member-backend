@@ -25,6 +25,7 @@ use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\AccessControlController;
 use App\Http\Controllers\NavigationController;
+use App\Http\Controllers\NavigationItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,3 +173,9 @@ Route::get('/list_of_navigations',[NavigationController::class,'index']);
 Route::post('/navigation',[NavigationController::class,'store']);
 Route::put('/update_navigation/{id}',[NavigationController::class,'update']);
 Route::delete('/delete_navigation/{id}',[NavigationController::class,'destroy']);
+
+
+Route::get('/list_of_navigation_items',[NavigationItemController::class,'index']);
+Route::post('/navigation_item',[NavigationItemController::class,'store']);
+Route::put('/update_navigation_item/{id}',[NavigationItemController::class,'update']);
+Route::delete('/delete_navigation_item/{id}',[NavigationItemController::class,'destroy']);
