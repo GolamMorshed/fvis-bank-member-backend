@@ -24,6 +24,7 @@ use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\GiftCardController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\AccessControlController;
+use App\Http\Controllers\NavigationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,3 +166,9 @@ Route::get('/list_of_access_permission',[AccessControlController::class,'index']
 Route::post('/access_permission',[AccessControlController::class,'store']);
 Route::put('/update_access_permission/{id}',[AccessControlController::class,'update']);
 Route::delete('/delete_access_permission/{id}',[AccessControlController::class,'destroy']);
+
+
+Route::get('/list_of_navigations',[NavigationController::class,'index']);
+Route::post('/navigation',[NavigationController::class,'store']);
+Route::put('/update_navigation/{id}',[NavigationController::class,'update']);
+Route::delete('/delete_navigation/{id}',[NavigationController::class,'destroy']);

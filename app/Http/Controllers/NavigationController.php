@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\NavigationResource;
+use App\Models\Navigation;
 
 class NavigationController extends Controller
 {
@@ -13,7 +15,8 @@ class NavigationController extends Controller
      */
     public function index()
     {
-        //
+        $navigation = Navigation::paginate(10);
+        return NavigationResource::collection($navigation);
     }
 
     /**
@@ -34,7 +37,14 @@ class NavigationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $navigation = new Navigation();
+        $navigation->name = $request->name;
+        $navigation->status = $request->status;
+
+        if($navigation->save())
+        {
+            return new NavigationResource($navigation);
+        }
     }
 
     /**
@@ -68,7 +78,14 @@ class NavigationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $navigation = Navigation::findOrFail($id);
+        $navigation->name = $request->name;
+        $navigation->status = $request->status;
+
+        if($navigation->save())
+        {
+            return new NavigationResource($navigation);
+        }
     }
 
     /**
@@ -79,6 +96,10 @@ class NavigationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $navigation = Navigation::findOrFail($id);
+        if($navigation->delete())
+        {
+            echo "Successfully Deleted";
+        }
     }
 }
