@@ -135,6 +135,17 @@ class GiftCardController extends Controller
         }
     }
 
+    public function updateUsedTime(Request $request, $id)
+    {
+        $gift_card = GiftCard::findorfail($id);
+        $gift_card->used_at = $request->used_at;
+
+        if($gift_card->save())
+        {
+            return new GiftCardResource($gift_card);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
