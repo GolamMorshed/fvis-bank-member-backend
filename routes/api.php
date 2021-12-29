@@ -141,6 +141,7 @@ Route::get('/list_of_teams',[TeamController::class,'index']);
 Route::post('/create_team',[TeamController::class,'store']);
 
 
+Route::get('/list_of_support_tickets',[SupportTicketController::class,'index']);
 Route::post('/support_ticket',[SupportTicketController::class,'store']);
 Route::put('/update_support_ticket_status/{id}',[SupportTicketController::class,'update']);
 Route::put('/assign_priority/{id}',[SupportTicketController::class,'priority']);
