@@ -146,10 +146,14 @@ Route::put('/update_faq_status/{id}',[FAQController::class,'update']);
 Route::get('/list_of_testimonials',[TestimonialController::class,'index']);
 Route::post('/create_testimonial',[TestimonialController::class,'store']);
 Route::put('/update_testimonial_status/{id}',[TestimonialController::class,'update']);
+Route::put('/update_testimonial/{id}',[TestimonialController::class,'edit']);
+Route::delete('/delete_testimonial/{id}',[TestimonialController::class,'destroy']);
 
 
 Route::get('/list_of_teams',[TeamController::class,'index']);
 Route::post('/create_team',[TeamController::class,'store']);
+Route::put('/update_team/{id}',[TeamController::class,'update']);
+Route::delete('/delete_team/{id}',[TeamController::class,'destroy']);
 
 
 Route::get('/list_of_support_tickets',[SupportTicketController::class,'index']);

@@ -65,9 +65,17 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->locale = $request->locale;
+        $testimonial->name = $request->name;
+        $testimonial->testimonial = $request->testimonial;
+        $testimonial->status = $request->status;
+        if($testimonial->save())
+        {
+            return new TestimonialResource($testimonial);
+        }
     }
 
     /**
@@ -95,6 +103,10 @@ class TestimonialController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+        if($testimonial->delete())
+        {
+            echo 'Sucessfully delete';
+        }
     }
 }

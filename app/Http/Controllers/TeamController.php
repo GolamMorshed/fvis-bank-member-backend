@@ -78,7 +78,13 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $team = Team::findOrFail($id);
+        $team->name = $request->name;
+        $team->role = $request->role;
+        if($team->save())
+        {
+            return new TeamResource($team);
+        }
     }
 
     /**
@@ -89,6 +95,10 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $team = Team::findOrFail($id);
+        if($team->save())
+        {
+            echo "Sucessfully delete";
+        }
     }
 }
