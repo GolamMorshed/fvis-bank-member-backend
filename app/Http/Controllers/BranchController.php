@@ -81,7 +81,17 @@ class BranchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $branch = Branch::findOrFail($id);
+        $branch->name = $request->name;
+        $branch->contact_email = $request->contact_email;
+        $branch->contact_phone = $request->contact_phone;
+        $branch->address = $request->address;
+        $branch->descriptions = $request->descriptions;
+
+        if($branch->save())
+        {
+            return new BranchResource($branch);
+        }
     }
 
     /**
@@ -92,6 +102,10 @@ class BranchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $branch = Branch::findOrFail($id);
+        if($branch->delete())
+        {
+            echo "Sucessfully Delete Branch";
+        }
     }
 }

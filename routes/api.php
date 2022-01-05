@@ -118,7 +118,8 @@ Route::put('/update_status/{id}',[LoanProductController::class,'update']);
 
 Route::get('/list_of_branches',[BranchController::class,'index']);
 Route::post('/branch',[BranchController::class,'store']);
-
+Route::put('/update_branch/{id}',[BranchController::class,'update']);
+Route::delete('/delete_branch/{id}',[BranchController::class,'destroy']);
 
 Route::get('/list_of_other_banks',[OtherBankController::class,'index']);
 Route::post('/other_bank',[OtherBankController::class,'store']);
