@@ -71,6 +71,21 @@ class CurrencyController extends Controller
         //
     }
 
+    public function update(Request $request, $id)
+    {
+        $currency = Currency::findOrFail($id);
+        $currency->name = $request->name;
+        $currency->exchange_rate = $request->exchange_rate;
+        $currency->base_currency = $request->base_currency;
+        $currency->status = $request->status;
+
+        if($currency->save())
+        {
+            return new CurrencyResource($currency);
+        }
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -78,7 +93,7 @@ class CurrencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateCurrencyStatus(Request $request, $id)
     {
         $currency_id = Currency::findOrFail($id);
         $currency_id->status = $request->status;
@@ -96,6 +111,10 @@ class CurrencyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $currency_id = Currency::findOrFail($id);
+        if($currency_id->delete())
+        {
+            echo 'Successfully Delete';
+        }
     }
 }
