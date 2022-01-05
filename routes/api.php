@@ -117,6 +117,8 @@ Route::delete('/delete_deposit/{id}',[DepositController::class,'destroy']);
 Route::get('/list_of_loan_product',[LoanProductController::class,'index']);
 Route::post('/loan_product',[LoanProductController::class,'store']);
 Route::put('/update_status/{id}',[LoanProductController::class,'update']);
+Route::put('/update_loan_product/{id}',[LoanProductController::class,'edit']);
+Route::delete('/delete_loan_product/{id}',[LoanProductController::class,'destroy']);
 
 
 Route::get('/list_of_branches',[BranchController::class,'index']);

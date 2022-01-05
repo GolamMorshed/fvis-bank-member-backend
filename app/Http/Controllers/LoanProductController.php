@@ -71,9 +71,23 @@ class LoanProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
-        //
+        $loan_product = LoanProduct::findOrFail($id);
+        $loan_product->name = $request->name;
+        $loan_product->minimum_amount = $request->minimum_amount;
+        $loan_product->maximum_amount = $request->maximum_amount;
+        $loan_product->description = $request->description;
+        $loan_product->interest_rate = $request->interest_rate;
+        $loan_product->interest_type = $request->interest_type;
+        $loan_product->term = $request->term;
+        $loan_product->term_period = $request->term_period;
+        $loan_product->status = $request->status;
+
+        if($loan_product->save())
+        {
+            return new LoanProductResource($loan_product);
+        }
     }
 
     /**
@@ -101,6 +115,10 @@ class LoanProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $loan_product_id = LoanProduct::findOrFail($id);
+        if($loan_product_id->delete())
+        {
+            echo "Sucessfully delete";
+        }
     }
 }
