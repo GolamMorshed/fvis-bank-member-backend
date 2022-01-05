@@ -94,7 +94,7 @@ Route::post('/currency',[CurrencyController::class,'store']);
 Route::put('/update_currency_status/{id}',[CurrencyController::class,'update']);
 Route::put('/update_currency/{id}',[CurrencyController::class,'update']);
 Route::put('/update_currency_status/{id}',[CurrencyController::class,'updateCurrencyStatus']);
-Route::put('/delete_currency/{id}',[CurrencyController::class,'destroy']);
+Route::delete('/delete_currency/{id}',[CurrencyController::class,'destroy']);
 
 
 Route::get('/list_of_fdr_plans',[FDRPlanController::class,'index']);
