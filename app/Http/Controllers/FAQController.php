@@ -65,9 +65,17 @@ class FAQController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $faq = FAQ::findOrFail($id);
+        $faq->locale = $request->locale;
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->status = $request->status;
+        if($faq->save())
+        {
+            return new FAQResource($faq);
+        }
     }
 
     /**
@@ -95,6 +103,10 @@ class FAQController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faq = FAQ::findOrFail($id);
+        if($faq->delete())
+        {
+            echo 'Sucessfully delete';
+        }
     }
 }

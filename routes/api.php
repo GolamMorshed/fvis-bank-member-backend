@@ -141,6 +141,8 @@ Route::delete('/delete_service/{id}',[ServiceController::class,'destroy']);
 Route::get('/list_of_faqs',[FAQController::class,'index']);
 Route::post('/create_faq',[FAQController::class,'store']);
 Route::put('/update_faq_status/{id}',[FAQController::class,'update']);
+Route::put('/update_faq/{id}',[FAQController::class,'edit']);
+Route::delete('/delete_faq/{id}',[FAQController::class,'destroy']);
 
 
 Route::get('/list_of_testimonials',[TestimonialController::class,'index']);
