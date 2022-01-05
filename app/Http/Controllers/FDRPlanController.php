@@ -85,6 +85,25 @@ class FDRPlanController extends Controller
     public function update(Request $request, $id)
     {
         $fdr_package_id = FDR::findOrFail($id);
+        $fdr_package_id->name = $request->name;
+        $fdr_package_id->minimum_amount = $request->minimum_amount;
+        $fdr_package_id->maximum_amount = $request->maximum_amount;
+        $fdr_package_id->interest_rate = $request->interest_rate;
+        $fdr_package_id->duration = $request->duration;
+        $fdr_package_id->duration_type = $request->duration_type;
+        $fdr_package_id->status = $request->status;
+        $fdr_package_id->description = $request->description;
+
+        if($fdr_package_id->save())
+        {
+            return new FDRResource($fdr_package_id);
+        }
+
+    }
+
+    public function updateFDRStatus(Request $request, $id)
+    {
+        $fdr_package_id = FDR::findOrFail($id);
         $fdr_package_id->status = $request->status;
         if($fdr_package_id->save())
         {
@@ -100,6 +119,10 @@ class FDRPlanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fdr_package_id = FDR::findOrFail($id);
+        if($fdr_package_id->delete())
+        {
+            echo "Sucessfully Delete FDR";
+        }
     }
 }
