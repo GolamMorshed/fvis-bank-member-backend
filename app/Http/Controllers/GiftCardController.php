@@ -34,6 +34,7 @@ class GiftCardController extends Controller
         $gift_card = GiftCard::join('currency','currency.id','=','currency_id')
         ->get([
             'currency.name',
+            'gift_cards.currency_id',
             'gift_cards.code',
             'gift_cards.amount',
             'gift_cards.status',
@@ -49,6 +50,7 @@ class GiftCardController extends Controller
         $gift_card = GiftCard::join('currency','currency.id','=','currency_id')
         ->get([
             'currency.name',
+            'gift_cards.currency_id',
             'gift_cards.code',
             'gift_cards.amount',
             'gift_cards.status',
@@ -140,6 +142,17 @@ class GiftCardController extends Controller
     {
         $gift_card = GiftCard::findorfail($id);
         $gift_card->used_at = $request->used_at;
+
+        if($gift_card->save())
+        {
+            return new GiftCardResource($gift_card);
+        }
+    }
+
+    public function updateCode(Request $request, $id)
+    {
+        $gift_card = GiftCard::findorfail($id);
+        $gift_card->code = $request->code;
 
         if($gift_card->save())
         {

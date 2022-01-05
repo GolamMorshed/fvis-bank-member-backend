@@ -176,6 +176,7 @@ Route::get('/list_of_used_gift_cards',[GiftCardController::class,'usedGiftCards'
 Route::post('/gift_card',[GiftCardController::class,'store']);
 Route::put('/update_gift_card/{id}',[GiftCardController::class,'update']);
 Route::put('/update_used_time/{id}',[GiftCardController::class,'updateUsedTime']);
+Route::put('/update_code/{id}',[GiftCardController::class,'updateCode']);
 Route::delete('/delete_gift_card/{id}',[GiftCardController::class,'destroy']);
 
 
