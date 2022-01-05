@@ -77,7 +77,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::findOrFail($id);
+        $service->icon = $request->icon;
+        if($service->save())
+        {
+            return new ServiceResource($service);
+        }
     }
 
     /**
@@ -88,6 +93,10 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        if($service->delete())
+        {
+            echo "Sucessfully delete";
+        }
     }
 }

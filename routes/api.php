@@ -134,6 +134,8 @@ Route::put('/delete_other_bank/{id}',[OtherBankController::class,'destroy']);
 
 Route::get('/list_of_services',[ServiceController::class,'index']);
 Route::post('/create_service',[ServiceController::class,'store']);
+Route::put('/update_service/{id}',[ServiceController::class,'update']);
+Route::delete('/delete_service/{id}',[ServiceController::class,'destroy']);
 
 
 Route::get('/list_of_faqs',[FAQController::class,'index']);
