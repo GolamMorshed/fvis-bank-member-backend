@@ -121,9 +121,12 @@ Route::post('/branch',[BranchController::class,'store']);
 Route::put('/update_branch/{id}',[BranchController::class,'update']);
 Route::delete('/delete_branch/{id}',[BranchController::class,'destroy']);
 
+
 Route::get('/list_of_other_banks',[OtherBankController::class,'index']);
 Route::post('/other_bank',[OtherBankController::class,'store']);
+Route::put('/update_other_bank_status/{id}',[OtherBankController::class,'updateStatus']);
 Route::put('/update_other_bank/{id}',[OtherBankController::class,'update']);
+Route::put('/delete_other_bank/{id}',[OtherBankController::class,'destroy']);
 
 
 Route::get('/list_of_services',[ServiceController::class,'index']);

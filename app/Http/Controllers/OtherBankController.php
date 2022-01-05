@@ -77,6 +77,27 @@ class OtherBankController extends Controller
         //
     }
 
+
+    public function update(Request $request, $id)
+    {
+        $other_bank = OtherBank::findOrFail($id);
+        $other_bank->name = $request->name;
+        $other_bank->swift_code = $request->swift_code;
+        $other_bank->bank_country = $request->bank_country;
+        $other_bank->bank_currency = $request->bank_currency;
+        $other_bank->minimum_transfer_amount = $request->minimum_transfer_amount;
+        $other_bank->maximum_transfer_amount = $request->maximum_transfer_amount;
+        $other_bank->fixed_charge = $request->fixed_charge;
+        $other_bank->charge_in_percentage = $request->charge_in_percentage;
+        $other_bank->descriptions = $request->descriptions;
+        $other_bank->status = $request->status;
+
+        if($other_bank->save())
+        {
+            return new OtherBankResource($other_bank);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +105,7 @@ class OtherBankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
         $other_bank_id = OtherBank::findOrFail($id);
         $other_bank_id->status = $request->status;
@@ -102,6 +123,10 @@ class OtherBankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $other_bank_id = OtherBank::findOrFail($id);
+        if($other_bank_id->delete())
+        {
+            echo 'Sucessfully Delete';
+        }
     }
 }
