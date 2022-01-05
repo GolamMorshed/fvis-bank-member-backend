@@ -18,6 +18,7 @@ class GiftCardController extends Controller
         $gift_card = GiftCard::join('currency','currency.id','=','currency_id')
         ->get([
             'currency.name',
+            'gift_cards.currency_id',
             'gift_cards.code',
             'gift_cards.amount',
             'gift_cards.status',
