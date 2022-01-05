@@ -51,7 +51,7 @@ class UserListController extends Controller
         $user->provider = $request->provider;
         $user->provider_id = $request->provider_id;
         $user->country_code = $request->country_code;
-        
+
 
         if($user->save())
         {
@@ -90,7 +90,22 @@ class UserListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = UserList::findorfail($id);
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->user_type = $request->user_type;
+        $user->role_id = $request->role_id;
+        $user->branch_id = $request->branch_id;
+        $user->status = $request->status;
+        $user->password = bcrypt($request->password);
+        $user->provider = $request->provider;
+        $user->provider_id = $request->provider_id;
+        $user->country_code = $request->country_code;
+
+        if($user->save())
+        {
+            return new UserListResource($user);
+        }
     }
 
     /**
@@ -101,6 +116,10 @@ class UserListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = UserList::findorfail($id);
+        if($user->delete())
+        {
+            echo "Successfull Deleted";
+        }
     }
 }

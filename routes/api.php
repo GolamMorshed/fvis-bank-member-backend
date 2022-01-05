@@ -106,6 +106,8 @@ Route::delete('/delete_fdr/{id}',[FDRPlanController::class,'destroy']);
 
 Route::get('/users',[UserListController::class,'index']);
 Route::post('/create_user',[UserListController::class,'store']);
+Route::put('/update_user/{id}',[UserListController::class,'update']);
+Route::delete('/delete_user/{id}',[UserListController::class,'destroy']);
 
 
 Route::get('/list_of_deposit',[DepositController::class,'index']);
