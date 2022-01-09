@@ -53,6 +53,7 @@ class FixedDepoController extends Controller
         $fixed_depo_request->created_user_Id = $request->created_user_Id;
         $fixed_depo_request->updated_user_Id = $request->updated_user_Id;
         $fixed_depo_request->branch_Id = $request->branch_Id;
+        $fixed_depo_request->transaction_code = $request->transaction_code;
 
         if($fixed_depo_request->save())
         {
@@ -75,6 +76,7 @@ class FixedDepoController extends Controller
         ->join('users','users.id','=','fdrs.user_id')
         ->join('currency','currency.id','=','fdrs.currency_id')
         ->get([
+            'fdrs.transaction_code',
             'fdrs.fdr_plan_id',
             'fdrs.user_id',
             'currency.name',

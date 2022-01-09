@@ -19,6 +19,7 @@ class WireTransferController extends Controller
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.transaction_code',
             'user_name.name as user_name',
             'currency.name',
             'transactions.amount',
@@ -69,6 +70,7 @@ class WireTransferController extends Controller
         $wire_transfer->created_user_id = $request->created_user_id;
         $wire_transfer->updated_user_id = $request->updated_user_id;
         $wire_transfer->branch_id = $request->branch_id;
+        $wire_transfer->transaction_code = $request->transaction_code;
         $wire_transfer->transaction_details = $request->transaction_details;
 
         if($wire_transfer->save())
@@ -89,6 +91,7 @@ class WireTransferController extends Controller
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.transaction_code',
             'user_name.name as user_name',
             'currency.name',
             'transactions.amount',

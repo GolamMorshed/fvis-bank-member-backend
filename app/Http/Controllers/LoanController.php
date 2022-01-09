@@ -56,6 +56,7 @@ class LoanController extends Controller
         $loan_request->approved_user_Id = $request->approved_user_Id;
         $loan_request->created_user_Id = $request->created_user_Id;
         $loan_request->branch_Id = $request->branch_Id;
+        $loan_request->transaction_code = $request->transaction_code;
 
         if($loan_request->save())
         {
@@ -77,6 +78,7 @@ class LoanController extends Controller
         ->join('loan_products','loan_products.id','=','loan_product_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'loans.transaction_code',
             'loans.loan_id',
             'loans.borrower_id',
             'loan_products.name',

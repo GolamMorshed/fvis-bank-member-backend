@@ -16,9 +16,10 @@ class DepositController extends Controller
     public function index()
     {
         $deposit = SendMoney::join('users as user_name','user_name.id','=',
-        'transactions.user_id')
+        'transactions.created_user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.id',
             'user_name.name as user_name',
             'currency.name',
             'transactions.amount',
@@ -28,6 +29,7 @@ class DepositController extends Controller
             'transactions.method',
             'transactions.status',
             'transactions.note',
+            'transactions.transaction_code',
         ])->where("type","=","deposit");
 
         return DepositResource::collection($deposit);
@@ -70,6 +72,7 @@ class DepositController extends Controller
         $deposit->updated_user_id = $request->updated_user_id;
         $deposit->branch_id = $request->branch_id;
         $deposit->transaction_details = $request->transaction_details;
+        $deposit->transaction_code = $request->transaction_code;
 
         if($deposit->save())
         {

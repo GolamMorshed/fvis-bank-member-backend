@@ -39,6 +39,7 @@ class SupportTicketController extends Controller
     {
 
         $support_ticket = new SupportTicket();
+        $support_ticket->support_ticket_id = $request->support_ticket_id;
         $support_ticket->sender_id = $request->sender_id;
         $support_ticket->subject = $request->subject;
         $support_ticket->message = $request->message;

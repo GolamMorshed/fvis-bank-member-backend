@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,13 +17,16 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|string|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string'
         ]);
 
         $user = new User([
             'name'  => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'user_type' => $request->user_type,
+            'status' => $request->status,
+            'phone' => $request->phone
         ]);
 
         $user->save();

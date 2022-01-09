@@ -56,6 +56,7 @@ class ExChangeMoneyController extends Controller
         $exchange_money->updated_user_id = $request->updated_user_id;
         $exchange_money->branch_id = $request->branch_id;
         $exchange_money->transaction_details = $request->transaction_details;
+        $exchange_money->transaction_code = $request->transaction_code;
 
         if($exchange_money->save())
         {
@@ -75,6 +76,7 @@ class ExChangeMoneyController extends Controller
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.transaction_code',
             'transactions.user_id',
             'currency.name',
             'transactions.amount',

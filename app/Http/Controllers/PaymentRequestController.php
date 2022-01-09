@@ -20,6 +20,7 @@ class PaymentRequestController extends Controller
         ->join('users as sender_user', 'sender_user.id','=','payment_requests.sender_id')
         ->join('users as receiver_user', 'receiver_user.id','=','payment_requests.receiver_id')
         ->get([
+            'payment_requests.transaction_code',
             'currency.name as currency_name',
             'payment_requests.amount',
             'payment_requests.status',
@@ -60,7 +61,7 @@ class PaymentRequestController extends Controller
         $payment_request->description = $request->description;
         $payment_request->sender_id = $request->sender_id;
         $payment_request->receiver_id = $request->receiver_id;
-        $payment_request->transaction_id = $request->transaction_id;
+        $payment_request->transaction_code = $request->transaction_code;
         $payment_request->branch_id = $request->branch_id;
 
         if($payment_request->save())
@@ -81,6 +82,7 @@ class PaymentRequestController extends Controller
         ->join('users as sender_user', 'sender_user.id','=','payment_requests.sender_id')
         ->join('users as receiver_user', 'receiver_user.id','=','payment_requests.receiver_id')
         ->get([
+            'payment_requests.transaction_code',
             'currency.name as currency_name',
             'payment_requests.amount',
             'payment_requests.status',

@@ -17,7 +17,9 @@ class NavigationItemController extends Controller
     {
         $navigation = NavigationItem::join('navigations','navigations.id','=','navigation_items.navigation_id')
         ->get([
+            'navigation_items.id',
             'navigations.name',
+            'navigations.id as navigation_id',
             'navigation_items.type',
             'navigation_items.type',
             'navigation_items.page_id',

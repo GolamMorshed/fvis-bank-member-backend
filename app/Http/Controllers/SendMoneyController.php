@@ -56,6 +56,7 @@ class SendMoneyController extends Controller
         $send_money->updated_user_id = $request->updated_user_id;
         $send_money->branch_id = $request->branch_id;
         $send_money->transaction_details = $request->transaction_details;
+        $send_money->transaction_code = $request->transaction_code;
 
         if($send_money->save())
         {
@@ -76,6 +77,7 @@ class SendMoneyController extends Controller
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.transaction_code',
             'transactions.user_id',
             'currency.name',
             'transactions.amount',
@@ -99,6 +101,7 @@ class SendMoneyController extends Controller
         'transactions.user_id')
         ->join('currency','currency.id','=','currency_id')
         ->get([
+            'transactions.transaction_code',
             'transactions.user_id',
             'currency.name',
             'transactions.amount',
@@ -108,6 +111,7 @@ class SendMoneyController extends Controller
             'transactions.method',
             'transactions.status',
             'transactions.note',
+            'transactions.created_at',
         ])
         ->where("user_id",$id);
 

@@ -17,6 +17,8 @@ class AccessControlController extends Controller
     {
         $access_control = AccessControl::join('roles','roles.id','=','role_id')
         ->get([
+            'permissions.id',
+            'roles.id as role_id',
             'roles.name',
             'permissions.permission'
         ]);
