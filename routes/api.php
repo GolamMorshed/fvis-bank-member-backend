@@ -207,3 +207,5 @@ Route::delete('/delete_navigation_item/{id}',[NavigationItemController::class,'d
 
 Route::get('/get_list_of_withdraws',[WithdrawController::class,'index']);
 Route::post('/create_withdraw_request',[WithdrawController::class,'store']);
+Route::get('/get_user_withdraw_list/{id}',[WithdrawController::class,'show']);
+Route::put('/update_approval/{id}',[WithdrawController::class,'update']);

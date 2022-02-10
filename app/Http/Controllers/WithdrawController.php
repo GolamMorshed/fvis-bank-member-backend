@@ -15,8 +15,22 @@ class WithdrawController extends Controller
      */
     public function index()
     {
-        $withdraw = Withdraw::all();
-        return WithdrawResource::collection($withdraw);
+        $withdraw = Withdraw::join('users','users.id','=','withdraw.user_id')
+        ->get([
+            'users.name',
+            'withdraw.bank_name',
+            'withdraw.branch_name',
+            'withdraw.swift_code',
+            'withdraw.account_holder_name',
+            'withdraw.account_no',
+            'withdraw.account_holder_phone_no',
+            'withdraw.currency',
+            'withdraw.amount',
+            'withdraw.approved',
+            'withdraw.created_at'
+        ]);
+
+        return new WithdrawResource($withdraw);
     }
 
     /**
@@ -63,8 +77,23 @@ class WithdrawController extends Controller
      */
     public function show($id)
     {
+        $withdraw = Withdraw::join('users','users.id','=','withdraw.user_id')
+        ->get([
+            'users.name',
+            'withdraw.bank_name',
+            'withdraw.branch_name',
+            'withdraw.swift_code',
+            'withdraw.account_holder_name',
+            'withdraw.account_no',
+            'withdraw.account_holder_phone_no',
+            'withdraw.currency',
+            'withdraw.amount',
+            'withdraw.approved',
+            'withdraw.created_at'
 
+        ])->where('user_id',$id);
 
+        return new WithdrawResource($withdraw);
 
     }
 
@@ -88,8 +117,17 @@ class WithdrawController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update_approval = Withdraw::findOrFail($id);
+        $update_approval->approved = $request->approved;
+
+        if($update_approval->save())
+        {
+            return new WithdrawResource($update_approval);
+        }
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.
