@@ -15,7 +15,8 @@ class WithdrawController extends Controller
      */
     public function index()
     {
-        //
+        $withdraw = Withdraw::all();
+        return WithdrawResource::collection($withdraw);
     }
 
     /**
