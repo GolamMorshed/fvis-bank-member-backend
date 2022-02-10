@@ -26,6 +26,7 @@ use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\AccessControlController;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\NavigationItemController;
+use App\Http\Controllers\WithdrawController;
 
 /*
 |--------------------------------------------------------------------------
@@ -202,3 +203,6 @@ Route::get('/list_of_navigation_items',[NavigationItemController::class,'index']
 Route::post('/navigation_item',[NavigationItemController::class,'store']);
 Route::put('/update_navigation_item/{id}',[NavigationItemController::class,'update']);
 Route::delete('/delete_navigation_item/{id}',[NavigationItemController::class,'destroy']);
+
+
+Route::post('/create_withdraw_request',[WithdrawController::class,'store']);

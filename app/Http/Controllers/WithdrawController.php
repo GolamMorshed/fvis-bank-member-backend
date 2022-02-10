@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\AccessControlResource;
-use App\Models\AccessControl;
+use App\Http\Resources\WithdrawResource;
+use App\Models\Withdraw;
 
-class AccessControlController extends Controller
+class WithdrawController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,7 @@ class AccessControlController extends Controller
      */
     public function index()
     {
-        $access_control = AccessControl::join('roles','roles.id','=','role_id')
-        ->get([
-            'permissions.id',
-            'roles.id as role_id',
-            'roles.name',
-            'permissions.permission'
-        ]);
-        return AccessControlResource::collection($access_control);
+        //
     }
 
     /**
@@ -32,7 +25,7 @@ class AccessControlController extends Controller
      */
     public function create()
     {
-        //s
+        //
     }
 
     /**
@@ -43,13 +36,21 @@ class AccessControlController extends Controller
      */
     public function store(Request $request)
     {
-        $access_control = new AccessControl();
-        $access_control->role_id = $request->role_id;
-        $access_control->permission = $request->permission;
+        $withdraw = new Withdraw();
+        $withdraw->user_id = $request->user_id;
+        $withdraw->bank_name = $request->bank_name;
+        $withdraw->branch_name = $request->branch_name;
+        $withdraw->swift_code = $request->swift_code;
+        $withdraw->account_holder_name = $request->account_holder_name;
+        $withdraw->account_no = $request->account_no;
+        $withdraw->account_holder_phone_no = $request->account_holder_phone_no;
+        $withdraw->currency = $request->currency;
+        $withdraw->amount = $request->amount;
+        $withdraw->approved = "Pending";
 
-        if($access_control->save())
+        if($withdraw->save())
         {
-            return new AccessControlResource($access_control);
+            return new WithdrawResource($withdraw);
         }
     }
 
@@ -61,7 +62,9 @@ class AccessControlController extends Controller
      */
     public function show($id)
     {
-        //
+
+
+
     }
 
     /**
@@ -84,14 +87,7 @@ class AccessControlController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $access_control = AccessControl::findOrFail($id);
-        $access_control->role_id = $request->role_id;
-        $access_control->permission = $request->permission;
-
-        if($access_control->save())
-        {
-            echo "Sucessfully update permission";
-        }
+        //
     }
 
     /**
@@ -102,11 +98,6 @@ class AccessControlController extends Controller
      */
     public function destroy($id)
     {
-        $access_control = AccessControl::findOrFail($id);
-
-        if($access_control->delete())
-        {
-            echo "Sucessfully delete permission";
-        }
+        //
     }
 }
