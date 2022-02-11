@@ -79,8 +79,10 @@ class WithdrawController extends Controller
     {
         $withdraw = Withdraw::join('users','users.id','=','withdraw.user_id')
         ->get([
-            'users.name',
+            
+            'withdraw.user_id',
             'withdraw.bank_name',
+            'users.name',
             'withdraw.branch_name',
             'withdraw.swift_code',
             'withdraw.account_holder_name',
@@ -89,10 +91,10 @@ class WithdrawController extends Controller
             'withdraw.currency',
             'withdraw.amount',
             'withdraw.approved',
-            'withdraw.created_at'
+            'withdraw.created_at',
+            'withdraw.updated_at',
 
-        ])->where('user_id',$id);
-
+        ])->where("user_id",$id);
         return new WithdrawResource($withdraw);
 
     }
