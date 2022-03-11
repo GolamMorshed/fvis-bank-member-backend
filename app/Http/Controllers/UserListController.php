@@ -122,4 +122,18 @@ class UserListController extends Controller
             echo "Successfull Deleted";
         }
     }
+
+    //EDIT USER INFORMATION
+    public function editUserInformation(Request $request,$id){
+
+        $user_info = UserList::findOrFail($id);
+        $user_info->name = $request->name;
+        $user_info->profile_picture = $request->file('profile_picture')->store('profile_picture');
+
+        if($user_info->save())
+        {
+            echo "Successfully Updated Profile Information";
+        }
+
+    }
 }

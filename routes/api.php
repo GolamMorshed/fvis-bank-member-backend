@@ -54,10 +54,12 @@ Route::group([
     ], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        //Route::put('update_user/{id}', 'AuthController@editUserInformation');
     });
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
+Route::put('/update_user/{id}',[UserListController::class,'editUserInformation']);
 
 Route::get('/list_of_send_money',[SendMoneyController::class,'index']);
 Route::post('/send_money',[SendMoneyController::class,'store']);
