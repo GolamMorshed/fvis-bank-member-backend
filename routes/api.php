@@ -59,7 +59,7 @@ Route::group([
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::put('/update_user/{id}',[UserListController::class,'editUserInformation']);
+
 
 Route::get('/list_of_send_money',[SendMoneyController::class,'index']);
 Route::post('/send_money',[SendMoneyController::class,'store']);

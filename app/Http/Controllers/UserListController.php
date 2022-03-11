@@ -96,6 +96,7 @@ class UserListController extends Controller
         $user->user_type = $request->user_type;
         $user->role_id = $request->role_id;
         $user->branch_id = $request->branch_id;
+        $user->profile_picture = $request->file('profile_picture')->store('profile_picture');
         $user->status = $request->status;
         $user->password = bcrypt($request->password);
         $user->provider = $request->provider;
@@ -123,17 +124,4 @@ class UserListController extends Controller
         }
     }
 
-    //EDIT USER INFORMATION
-    public function editUserInformation(Request $request,$id){
-
-        $user_info = UserList::findOrFail($id);
-        $user_info->name = $request->name;
-        $user_info->profile_picture = $request->file('profile_picture')->store('profile_picture');
-
-        if($user_info->save())
-        {
-            echo "Successfully Updated Profile Information";
-        }
-
-    }
 }
